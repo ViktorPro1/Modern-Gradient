@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Gradient — WebStart Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0010; color: #fff; font-family: 'Syne', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+    /* BG */
+    .bg { position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 15%, rgba(180,30,255,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 85% 85%, rgba(255,60,120,0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 50% 40%, rgba(0,180,255,0.12) 0%, transparent 70%);
+      animation: bgShift 10s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift { from { opacity: 0.75; } to { opacity: 1; } }
+
+    .content { position: relative; z-index: 2; }
+
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(12px); background: rgba(10,0,16,0.4); position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(90deg, #c850f5, #ff5c8a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: 0.3px; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-btn { background: rgba(200,80,245,0.15); border: 1px solid rgba(200,80,245,0.4); color: #e090ff; font-size: 13px; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-family: 'Syne', sans-serif; transition: background 0.2s; }
+    .nav-btn:hover { background: rgba(200,80,245,0.3); }
+
+    /* HERO */
+    .hero { padding: 80px 40px 60px; max-width: 700px; }
+    .tag { display: inline-block; border: 1px solid rgba(200,80,245,0.5); background: rgba(200,80,245,0.1); color: #e090ff; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; margin-bottom: 32px; font-family: 'Inter', sans-serif; }
+    h1 { font-size: 72px; font-weight: 800; line-height: 0.95; margin-bottom: 24px; letter-spacing: -2.5px; }
+    .grad-text { background: linear-gradient(135deg, #c850f5 0%, #ff5c8a 50%, #ff9a3c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .subtitle { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 40px; font-family: 'Inter', sans-serif; font-weight: 300; max-width: 440px; }
+    .btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-main { background: linear-gradient(135deg, #c850f5, #ff5c8a); border: none; color: #fff; padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Syne', sans-serif; letter-spacing: -0.3px; transition: opacity 0.2s, transform 0.15s; }
+    .btn-main:hover { opacity: 0.9; transform: scale(1.02); }
+    .btn-ghost { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); padding: 14px 28px; border-radius: 50px; font-size: 15px; cursor: pointer; font-family: 'Syne', sans-serif; transition: background 0.2s; }
+    .btn-ghost:hover { background: rgba(255,255,255,0.12); }
+
+    /* FEATURE CARDS */
+    .features { padding: 60px 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; max-width: 800px; }
+    .feat-card { border-radius: 20px; padding: 28px; position: relative; overflow: hidden; transition: transform 0.2s; }
+    .feat-card:hover { transform: translateY(-3px); }
+    .fc-1 { background: linear-gradient(135deg, rgba(200,80,245,0.2), rgba(255,92,138,0.15)); border: 1px solid rgba(200,80,245,0.35); }
+    .fc-2 { background: linear-gradient(135deg, rgba(0,180,255,0.15), rgba(0,240,200,0.1)); border: 1px solid rgba(0,180,255,0.28); }
+    .fc-3 { background: linear-gradient(135deg, rgba(255,154,60,0.15), rgba(255,200,60,0.1)); border: 1px solid rgba(255,154,60,0.28); }
+    .fc-4 { background: linear-gradient(135deg, rgba(255,92,138,0.15), rgba(200,80,245,0.1)); border: 1px solid rgba(255,92,138,0.28); }
+    .feat-orb { position: absolute; width: 100px; height: 100px; border-radius: 50%; filter: blur(40px); top: -15px; right: -15px; opacity: 0.45; pointer-events: none; }
+    .fc-1 .feat-orb { background: #c850f5; }
+    .fc-2 .feat-orb { background: #00b4ff; }
+    .fc-3 .feat-orb { background: #ff9a3c; }
+    .fc-4 .feat-orb { background: #ff5c8a; }
+    .feat-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+    .feat-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+    .feat-text { font-size: 13px; color: rgba(255,255,255,0.5); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.6; }
+
+    /* MARQUEE */
+    .marquee-wrap { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); overflow: hidden; }
+    .marquee { display: flex; gap: 48px; white-space: nowrap; animation: scroll 18s linear infinite; }
+    @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item { font-size: 13px; font-family: 'Inter', sans-serif; font-weight: 300; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+    .marquee-dot { color: #c850f5; font-size: 18px; }
+
+    /* FOOTER */
+    footer { padding: 28px 40px; border-top: 1px solid rgba(255,255,255,0.07); display: flex; justify-content: space-between; align-items: center; }
+    footer span { font-size: 12px; color: rgba(255,255,255,0.3); font-family: 'Inter', sans-serif; font-weight: 300; }
+  </style>
+</head>
+<body>
+
+  <div class="bg"></div>
+  <div class="content">
+
+    <nav>
+      <div class="logo">GRADIENT°</div>
+      <div class="nav-links">
+        <a href="#">Works</a>
+        <a href="#">Motion</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <button class="nav-btn">Зв'язатись ✦</button>
+    </nav>
+
+    <div class="hero">
+      <div class="tag">Creative Portfolio</div>
+      <h1>Яскраво.<br><span class="grad-text">Сміливо.</span><br>Творчо.</h1>
+      <p class="subtitle">3D ефекти, анімовані градієнти, smooth scrolling. Для тих, хто не боїться виділятись серед інших.</p>
+      <div class="btns">
+        <button class="btn-main">Дивитись кейси ✦</button>
+        <button class="btn-ghost">Showreel →</button>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feat-card fc-1">
+        <div class="feat-orb"></div>
+        <span class="feat-icon">✦</span>
+        <div class="feat-title">Анімовані градієнти</div>
+        <div class="feat-text">Живі, дихаючі фони що реагують на скролл та мишу</div>
+      </div>
+      <div class="feat-card fc-2">
+        <div class="feat-orb"></div>
+        <span class="feat-icon">◈</span>
+        <div class="feat-title">3D ефекти</div>
+        <div class="feat-text">Глибина та об'єм через CSS perspective та WebGL</div>
+      </div>
+      <div class="feat-card fc-3">
+        <div class="feat-orb"></div>
+        <span class="feat-icon">◎</span>
+        <div class="feat-title">Smooth scrolling</div>
+        <div class="feat-text">Бездоганний плавний досвід навігації</div>
+      </div>
+      <div class="feat-card fc-4">
+        <div class="feat-orb"></div>
+        <span class="feat-icon">⬡</span>
+        <div class="feat-title">Інтерактивність</div>
+        <div class="feat-text">Мікроанімації та реакція на кожну дію користувача</div>
+      </div>
+    </div>
+
+    <div class="marquee-wrap">
+      <div class="marquee">
+        <span class="marquee-item">UI/UX Design</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">Motion Graphics</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">3D Animation</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">Brand Identity</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">UI/UX Design</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">Motion Graphics</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">3D Animation</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">Brand Identity</span><span class="marquee-dot">✦</span>
+        <span class="marquee-item">Creative Direction</span><span class="marquee-dot">✦</span>
+      </div>
+    </div>
+
+    <footer>
+      <span>GRADIENT° — WebStart Platform</span>
+      <span>© 2025 WebStart Studio</span>
+    </footer>
+
+  </div>
+</body>
+</html>
